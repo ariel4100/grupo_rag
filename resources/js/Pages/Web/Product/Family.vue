@@ -1,13 +1,13 @@
 <template>
     <web-layout class="">
-        <div class="bg-terciario">
+        <div class="bg-light">
             <div class="container">
                 <h5 class="section-title ">
                     <i class="fas fa-home"></i>
-                    <a :href="route('familias')" class="text-white">
-                        {{ t('PRODUCTOS') }}
+                    <a :href="route('familias')" class="text-dark">
+                        {{ t('Tratamientos') }}
                     </a>
-                    <a v-if="familia" :href="route('productos',{ slug: familia.slug })" class="text-white">
+                    <a v-if="familia" :href="route('productos',{ slug: familia.slug })" class="text-dark">
                         {{ (familia ? '| '+familia.title : '') }}
                     </a>
 
@@ -26,7 +26,7 @@
                 <div class="col-lg-9 col-md-8">
                     <div class="row">
                         <template v-for="item in productos">
-                            <div class="col-sm-6 col-md-4 col-lg-4 mb-5">
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-5">
                                 <product-card :item="item" type="1"></product-card>
                             </div>
                         </template>
@@ -37,7 +37,7 @@
         <div v-else class="container my-5">
             <div class="row">
                 <template v-for="item in familias">
-                    <div class="col-sm-6 col-md-4 col-lg-4 mb-5">
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-5">
                         <product-card :item="item" type="1"></product-card>
                     </div>
                 </template>

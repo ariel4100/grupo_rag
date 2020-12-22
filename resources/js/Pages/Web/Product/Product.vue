@@ -1,14 +1,11 @@
 <template>
     <web-layout class="">
-        <div class="bg-terciario">
+        <div class="bg-light">
             <div class="container">
-                <h5 class="section-title text-white">
+                <h5 class="section-title text-dark">
                     <i class="fas fa-home"></i>
-                    <a :href="route('familias')" class="text-white">
+                    <a :href="route('familias')" class="text-dark">
                         {{ t('PRODUCTOS') }}
-                    </a>
-                    <a v-if="familia" :href="route('productos',{ slug: familia.slug })" class="text-white">
-                        {{ (familia ? '| '+familia.title : '') }}
                     </a>
                     {{ (producto ? '| '+producto.title : '') }}
                 </h5>
@@ -25,40 +22,30 @@
                 </div>
                 <div class="col-md-9">
                     <div class="row">
-                        <div class="col-md-6 mb-5">
+                        <div class="col-md-12 mb-5">
                             <div class="border">
                                 <carousel :images="gallery"  producto="1"></carousel>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-5">
-                            <h4 class="text-primario">
-                                {{ producto.title }}
-                            </h4>
+                        <div class="col-md-12 mb-5">
+                            <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+                                <h4 class="text-dark font-weigth-bold">
+                                    {{ producto.title }}
+                                </h4>
+                                <a :href="route('presupuesto')" class="btn btn-primario text-white">Solicitar presupuesto</a>
+                            </div>
 
                             <div class="" v-html="producto.text"></div>
-                            <a v-if="producto.file" :href="producto.file" download   class="btn btn-outline-primario">Ficha Técnica <i class="fas fa-file-download  fa-lg"></i></a>
-                            <a :href="route('presupuesto')" class="btn btn-primario text-white">Solicitar presupuesto</a>
                         </div>
-                        <div class="col-md-4 mb-5 d-flex justify-content-center align-items-center" v-if="producto.video" style="background-color:#F6F6F6;">
-                            <div class="">
+                        <div class="col-md-4 mb-5 d-flex justify-content-center align-items-center pr-md-0" v-if="producto.video" style="background-color:#F6F6F6;">
+                            <div class="py-4">
                                 <p style="white-space: pre-line;">{{ producto.text_video }}</p>
                             </div>
                         </div>
-                        <div class="col-md-8 mb-5" v-if="producto.video">
+                        <div class="col-md-8 mb-5 pl-md-0" v-if="producto.video">
                             <iframe width="100%" height="300" :src="'https://www.youtube.com/embed/'+producto.video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
-                        <div class="col-md-12" v-if="productos.length > 0">
-                            <h5 class="text-secundario">Productos relacionados</h5>
-                            <hr   class="mt-1 bg-secundario">
-                            <div class="row">
-                                <template v-for="item in productos">
-                                    <div class="col-md-4 col-sm-6 col-lg-4 mb-4">
-                                        <product-card :item="item" type="1"></product-card>
 
-                                    </div>
-                                </template>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

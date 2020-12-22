@@ -80,7 +80,7 @@
          justify-content: center;
          align-items: center;
          max-height: 250px;
-         border: 1px solid #707070;
+         border: 1px solid #D5D5D5;
          min-height: 160px;
      }
  </style>

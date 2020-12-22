@@ -8,9 +8,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 class Helpers
 {
 
- 	public static function saveImage($file, $route, $file_before = null, $id = null)
- 	{
- 		if ($file) {
+    public static function saveImage($file, $route, $file_before = null, $id = null)
+    {
+//        dd($file);
+        if ($file) {
             if (is_string($file)){
                 // 0 para q la condicion no guarde, y lo deje como esta
                 return 0;
@@ -27,9 +28,9 @@ class Helpers
             }
         }
         return false;
-	}
- 	public static function saveMultipleImage($items, $route, $model = null, $id = null)
- 	{
+    }
+    public static function saveMultipleImage($items, $route, $model = null, $id = null)
+    {
         if($items != null){
             foreach ($items as $key => $value) {
                 if ($model){
@@ -55,8 +56,6 @@ class Helpers
                         //limpio el dominio y obtengo solo el path del file
                         $path = explode('storage/', $value)[1];
                         $images[$key] = $path;
-                        $images[$key]['title'] = $value['title'];
-
                     }
 
 
@@ -110,13 +109,12 @@ class Helpers
 //                $block = Block::create([$images]);
 
         }
- 		if ($model) {
+        if ($model) {
             return 1;
         }
 
         return $images;
-	}
-
+    }
     public static function saveMultipleImageWithData($items, $route, $model = null, $id = null)
     {
         if($items != null){
@@ -210,21 +208,21 @@ class Helpers
     }
 
     public static function saveFile($file, $route, $id = null)
- 	{
- 		if ($file) {
+    {
+        if ($file) {
             if ($file->isValid()) {
-		        $path = public_path('files/'.$route.'/');
-		        $route_file = $route.'_'.$id."_".$file->getClientOriginalName();
-		        $file->move($path, $route_file);
+                $path = public_path('files/'.$route.'/');
+                $route_file = $route.'_'.$id."_".$file->getClientOriginalName();
+                $file->move($path, $route_file);
 
-		        return $route_file;
+                return $route_file;
             }
         }
-    	return false;
-	}
+        return false;
+    }
 
-	public static function getTranslations($item, $name){
- 	    $idiomas = LaravelLocalization::getSupportedLocales();
+    public static function getTranslations($item, $name){
+        $idiomas = LaravelLocalization::getSupportedLocales();
         $getIdiomas = collect($idiomas)->map(function ($item, $key) {
             return '';
         })->toArray();

@@ -5,6 +5,7 @@ require('moment');
 import Vue from 'vue';
 
 import { InertiaApp } from '@inertiajs/inertia-vue';
+import { Inertia } from '@inertiajs/inertia'
 import { InertiaForm } from 'laravel-jetstream';
 import PortalVue from 'portal-vue';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
@@ -15,6 +16,8 @@ import Slick from 'vue-slick';
 import Multiselect from 'vue-multiselect'
 import store from './Store'
 import money from 'v-money'
+import NProgress from 'nprogress'
+
 
 // register directive v-money and component <money>
 Vue.use(money, {
@@ -109,8 +112,8 @@ Vue.mixin({
                 },
                 {
                     nombre: 'SOLICITAR PRESUPUESTO',
-                    route: 'empresa',
-                    url: 'descargas',
+                    route: 'presupuesto',
+                    url: 'presupuesto',
                     mostrar: 1,
                 },
                 {
@@ -161,7 +164,30 @@ Vue.component(money)
 
 Vue.component('multiselect', Multiselect)
 
+// InertiaProgress.init({
+//     // The delay after which the progress bar will
+//     // appear during navigation, in milliseconds.
+//     delay: 0,
+//
+//     // The color of the progress bar.
+//     color: 'red',
+//
+//     // Whether to include the default NProgress styles.
+//     includeCSS: true,
+//
+//     // Whether the NProgress spinner will be shown.
+//     showSpinner: true,
+// })
+
 const app = document.getElementById('app');
+NProgress.configure({
+    ease: 'ease',
+    speed: 500,
+    showSpinner: false,
+
+});
+Inertia.on('start', () => NProgress.start())
+Inertia.on('finish', () => NProgress.done())
 
 new Vue({
     render: (h) =>

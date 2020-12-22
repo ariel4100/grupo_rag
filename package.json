@@ -27,9 +27,11 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@inertiajs/progress": "^0.2.3",
         "bootstrap-vue": "^2.18.1",
         "jodit-vue": "^2.2.2",
         "jquery": "^3.5.1",
+        "nprogress": "^0.2.0",
         "sass": "^1.29.0",
         "sass-loader": "^10.0.5",
         "v-money": "^0.8.1",

@@ -1,13 +1,12 @@
 <template>
     <web-layout class="">
-        <div class="bg-terciario">
+        <div class="bg-light">
             <div class="container">
                 <h5 class="section-title">
                     {{ t('Solicitar presupuesto') }}
                 </h5>
             </div>
         </div>
-
         <form @submit.prevent="enviar" class="container my-5">
             <div v-if="$page.flash.success" class="alert alert-success">
                 {{ $page.flash.success }}

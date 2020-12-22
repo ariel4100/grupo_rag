@@ -2,13 +2,13 @@
     <app-layout>
 
         <template #header>
-            Productos
+            Tratamientos
         </template>
         <div class="card">
             <div class="card-header">
                 <modal
-                        title="Producto"
-                        title-button="Agregar Producto"
+                        title="Tratamiento"
+                        title-button="Agregar Tratamiento"
                         @ok="add()"
                         @hidden="reset()"
                 >
@@ -44,26 +44,7 @@
                         </div>
                     </template>
                     <template #default>
-                        <div class="row">
-                            <div class="col-md-6 form-group">
-                                <label for="">Familias</label>
-                                <multiselect v-model="familia_selected"  @select="clear_family" :options="familias" placeholder="Familia" label="title" track-by="id"></multiselect>
 
-<!--                                <select v-model="familia_selected" id="" class="form-control">-->
-<!--                                    <option value="" disabled selected>Familia</option>-->
-<!--                                    <option :value="item" v-for="item in familias">-->
-<!--                                        {{ item.title }}-->
-<!--                                    </option>-->
-<!--                                </select>-->
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label for="">Productos Relacionados</label>
-                                <select-multiple
-                                        :data="productos"
-                                        :model.sync="product.productos"
-                                ></select-multiple>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="form-group col-md-12 d-flex align-items-end">
                                 <div class="custom-control custom-switch">
@@ -71,10 +52,10 @@
                                     <label class="custom-control-label" for="customSwitch1">Mostrar en la Sección Principal?</label>
                                 </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label>Archivo</label>
-                                <image-custom :model.sync="product.file"></image-custom>
-                            </div>
+<!--                            <div class="form-group col-md-6">-->
+<!--                                <label>Archivo</label>-->
+<!--                                <image-custom :model.sync="product.file"></image-custom>-->
+<!--                            </div>-->
                             <div class="col-md-12" >
                                 <label>Agregar fotos</label>
                                 <custom-gallery   label="" :model.sync="product.gallery" :link="0" class=""></custom-gallery>
@@ -290,7 +271,7 @@
                     cancelButtonText: 'No'
                 }).then((result) => {
                     if (result.value) {
-                        axios.delete(route('adm.productos.destroy',{id: id})).then((res)=>{
+                        this.$inertia.delete(route('adm.productos.destroy',{id: id})).then((res)=>{
                             console.log(res)
                             if (res.data.status == 'success'){
                                 Swal.fire({

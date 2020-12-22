@@ -17,24 +17,6 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $familias = Family::with('padre')->with('childFamilies')->whereNull('padre_id')->orderBy('order')->get();
-        $subfamilias = Family::with('childFamilies')->where('padre_id','!=',null)->orderBy('order')->get();
-
-        $familiasMap = $familias->map(function ($item) {
-            return [
-                'id' => $item->id,
-                'title' => $item->title,
-                'padre_id' => $item->padre_id,
-            ];
-        });
-        $subfamiliasMap = $subfamilias->map(function ($item) {
-            return [
-                'id' => $item->id,
-                'title' => $item->title,
-                'padre_id' => $item->padre_id,
-            ];
-        });
-
 
 //        dd($categoriasconhijos);
         $productos = Product::get();
@@ -42,8 +24,8 @@ class ProductController extends Controller
 
 //        dd($productos);
         return Inertia::render('Admin/Product', [
-            'familias' => $familiasMap,
-            'subfamilias' => $subfamiliasMap,
+            'familias' => [],
+            'subfamilias' => [],
 
             'productos' => $productos->map(function ($item) {
                 return [
@@ -52,24 +34,14 @@ class ProductController extends Controller
                     'description' => $item->description ? $item->getTranslations('description') : ['es' => ''],
                     'text' => $item->text ? $item->getTranslations('text') : ['es' => ''],
                     'text_video' => $item->text_video ? $item->getTranslations('text_video') : ['es' => ''],
-                    'family' => $item->family->only('id','title','padre_id'),
-                    'family_id' => $item->family->only('id','title','padre_id'),
                     'order' => $item->order,
                     'featured' => $item->featured,
                     'video' => $item->video,
-                    'productos' => $item->related->map(function ($item) {
-                        return [
-                            'id' => $item->id,
-                            'title' => $item->title,
-                        ];
-                    }),
                     'gallery' => collect($item->gallery)->map(function ($item) {
                         $url_image =  Storage::disk(env('DEFAULT_STORAGE_DISK'))->url($item);
 //                        dd($item);
                         return $url_image;
                     }),
-                    'file' => $item->file ? Storage::disk(env('DEFAULT_STORAGE_DISK'))->url($item->file) : '',
-
                 ];
             }),
 
@@ -105,18 +77,13 @@ class ProductController extends Controller
             $item->setTranslations('slug', collect(json_decode($request->title))->slug()->toArray());
             $item->order   = $request->order;
             $item->gallery   = @$images;
-            isset($request->featured) ? $item->featured = 1 : false;
+            isset($request->featured) ? $item->featured = 1 : $item->featured = 0;
             $item->video   = $request->video;
-            $item->family_id   = $request->family_id;
+
 
 //            $item->slug    = str::slug($request->title);
             $item->save();
-            $productos = collect(json_decode($request->productos));
-//
-            //productos relacionados
-            if (count($productos) > 0){
-                $item->related()->sync($productos->pluck('id'));
-            }
+
             DB::commit();
 
             session()->flash('message', 'Se ha guardado correctamente.');
@@ -146,9 +113,8 @@ class ProductController extends Controller
                 $new = $item->replicate();
                 $new->setTranslation('title', 'es', $new->getTranslation('title', 'es'). ' - Copia');
 //                $new->slug = '223322';
-                $new->push();
+                $new->save();
 
-                $new->related()->sync($item->related);
 //                $new->familias()->sync($item->familias);
 //                $item->familias()->sync($familias->pluck('id'));
 

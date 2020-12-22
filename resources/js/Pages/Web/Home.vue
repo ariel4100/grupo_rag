@@ -4,7 +4,7 @@
 
         <div class="container my-5">
             <div class="d-flex pb-4 justify-content-center align-items-center">
-                <h4 class="m-0 px-3 font-weight-bold text-primario">Conocé nuestros productos</h4>
+                <h4 class="m-0 px-3 font-weight-bold  ">Conocé nuestros tratamientos</h4>
             </div>
 
             <div class="row">
@@ -16,37 +16,6 @@
             </div>
         </div>
 
-        <template v-for="(item,index) in bloques">
-            <template v-if="index == 0">
-                <div class="" style="background-color: #F5F5F5;">
-                    <div class="container wow fadeIn py-4" :data-wow-delay="'0.'+index+'s'">
-                        <div class="row justify-content-center">
-                            <div class="col-md-6">
-                                <img :src="item.image" alt="" class="img-fluid mx-auto">
-                                <h2 class="mb-3 mt-3 text-primario text-center font-weight-bold">{{ item.title }}</h2>
-                                <p class="" v-html="item.text"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </template>
-        </template>
-        <div class="container my-5">
-            <div class="d-flex mb-4 justify-content-center align-items-center">
-                <h4 class="m-0 px-3 font-weight-bold text-primario">Nuestras Categorías</h4>
-            </div>
-
-            <div class="row">
-                <template v-for="item in familias">
-                    <div class="col-sm-6 col-md-4 col-lg-3 mb-5">
-                        <product-card :item="item" type="1"></product-card>
-                    </div>
-                </template>
-            </div>
-            <div class="text-center">
-                <a :href="route('familias')" class="btn btn-primario px-5">Ver más</a>
-            </div>
-        </div>
 
 
         <div class="" style="background-color: #F5F5F5;">
@@ -56,11 +25,32 @@
                         <img :src="item.image" alt="" class="img-fluid mx-auto">
                         <h1 class="my-3 font-weight-bold text-secundario text-center">{{ item.title }}</h1>
                         <div class="" v-html="item.text"></div>
+
+
+                    </div>
+                    <div class="col-md-10 wow fadeIn py-4" data-wow-delay="0.2s">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 col-lg-4" v-for="(item,index) in empresa">
+                                <img :src="item.image" alt="" class="img-fluid mx-auto">
+                                <div class="my-3 text-center" v-html="item.title"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
+        <section class="container my-5">
+            <slick ref="slick" :options="slickOptions">
+                <div v-for="(item,key) in clientes" class="">
+                    <div class="col my-3">
+                        <div class="clientes">
+                            <img :src="item.image" :alt="item.title" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </slick>
+        </section>
     </web-layout>
 </template>
 
@@ -76,8 +66,8 @@
     export default {
         props: {
             sliders: Array,
-            imagenes: Array,
-            familias: Array,
+            clientes: Array,
+            empresa: Array,
             productos: Array,
             textos: Array,
             texto_imagen: Array,
@@ -87,7 +77,7 @@
               filterByPadreId:'',
               slickOptions: {
                   infinite: true,
-                  slidesToShow: 4,
+                  slidesToShow: 6,
                   slidesToScroll: 1,
                   arrows: true,
                   draggable: true,
@@ -131,3 +121,13 @@
         },
     }
 </script>
+<style>
+    .clientes{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-height: 250px;
+        border: 1px solid #D5D5D5;
+        min-height: 160px;
+    }
+</style>
