@@ -124,12 +124,12 @@
                                 cancelButtonText: 'Cancelar'
                             }).then((result) => {
                                 if (result.value) {
-                                    if (this.gallery.length > 3){return false;}
+                                    // if (this.gallery.length > 3){return false;}
                                     this.gallery.push(file)
                                 }
                             })
                         }else{
-                            if (this.gallery.length > 3){return false;}
+                            // if (this.gallery.length > 3){return false;}
                             this.gallery.push(file)
                         }
                         // console.log(e.target.files[index])

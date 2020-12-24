@@ -47,8 +47,18 @@ class AppServiceProvider extends ServiceProvider
             $metas =  Meta::get();
             $contacto = Content::where('section', 'contacto')->first();
             $telefonos = collect(@$contacto->data['phones']);
-//            dd($contacto->data['google']);
+            $contenido = Content::with('block')->where('section','calidad')->first();
+            $contenidoMap =  $contenido->Block->map(function ($item) {
+                return [
+                    'title' => $item->title,
+                    'text' => $item->text,
+                    'type' => $item->type,
+                    'image' => $item->image ? Storage::disk(env('DEFAULT_STORAGE_DISK'))->url($item->image) : '',
+                ];
+            });
+//            dd(     $contenidoMap->whereNull('type')->values()->first());
             Inertia::share([
+                'image_calidad' => @$contenidoMap->whereNull('type')->values()->first()['image'],
                 'key_web_captcha' => @$contacto->data['google'][0]['key'],
                 'key_secret_captcha' => @$contacto->data['google'][1]['key'],
                 'appUrl' => config('app.url'),

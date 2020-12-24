@@ -11,20 +11,20 @@
 
             <div class="row">
                 <div class="col-md-12 col-lg-3">
-                    <h2 class="text-primario  text-uppercase">
-                        Contacto
-                    </h2>
+<!--                    <h2 class="text-primario  text-uppercase">-->
+<!--                        Contacto-->
+<!--                    </h2>-->
                     <p>
                         Para mayor información, no dude en contactarse mediante el siguiente formulario, o a través de nuestras vías de comunicación.
                     </p>
                     <ul class="list-group">
-                        <li class="list-group-item bg-transparent border-0 d-flex px-0  align-items-center">
+                        <li class="list-group-item bg-transparent border-0 d-flex px-0  ">
                             <i class="fas fa-map-marker-alt fa-lg text-primario mr-2"></i>
                             <template v-for="item in $page.direcciones.slice(0,1)">
                                 <a :href="item.link" target="_blank" class="text-muted hover-color" style="white-space: pre-line;">{{ item.address }}</a>
                             </template>
                         </li>
-                        <li class="list-group-item bg-transparent border-0 d-flex px-0  align-items-center">
+                        <li class="list-group-item bg-transparent border-0 d-flex px-0  align-items-center" v-if="$page.telefonos.length > 0">
                             <i class="fas fa-phone-volume fa-lg text-primario  mr-2"></i>
                             <template v-for="(item,i) in $page.telefonos">
                                 <template v-if="item.type == 'tel'">
@@ -34,7 +34,17 @@
                                 </template>
                             </template>
                         </li>
-                        <li class="list-group-item bg-transparent border-0 d-flex px-0  align-items-center">
+                        <li class="list-group-item bg-transparent border-0 d-flex px-0  align-items-center" v-if="$page.whatsapps.length > 0">
+                            <i class="fab fa-whatsapp fa-lg text-primario  mr-2"></i>
+                            <template v-for="(item,i) in $page.whatsapps">
+                                <template >
+                                    <a :href="'https://wa.me/'+item.numero" class="text-muted">
+                                        {{ i == 0 ? '':'/' }} {{ item.numero_visible }}
+                                    </a>
+                                </template>
+                            </template>
+                        </li>
+                        <li class="list-group-item bg-transparent border-0 d-flex px-0  align-items-center" v-if="$page.emails.length > 0">
                             <i class="fas fa-envelope fa-lg text-primario mr-2"></i>
                             <template v-for="item in $page.emails.slice(0,3)">
                                 <a :href="'mailto:'+item.email" target="_blank" class="text-muted hover-color text-truncate">{{ item.email }}</a>

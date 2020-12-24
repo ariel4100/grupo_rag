@@ -2,7 +2,7 @@
     <aside>
         <ul class="list-unstyled">
             <li class="list-group-item border-0 p-0" v-for="(item,key) in familias">
-                <a :href="item.ruta" :data-target="'#categoria_'+key" data-toggle="collapse" aria-expanded="false" class="d-flex align-items-center p-2 border-bottom fwb700 " :class="familiaId == item.id ? 'bg-light text-dark' : 'text-dark'">
+                <a :href="item.ruta"     class="d-flex align-items-center p-2 border-bottom fwb700 " :class="familiaId == item.id ? 'bg-light text-dark' : 'text-dark'">
 <!--                    <span onclick="location.href='{{ route('producto.subfamilias',$item->slug) }}'"></span>-->
                     {{ item.title }}
 

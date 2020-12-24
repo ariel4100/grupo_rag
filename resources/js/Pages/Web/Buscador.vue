@@ -5,7 +5,7 @@
             <h4 class="text-primario">Buscador</h4>
             <div class="row">
                 <div class="col-md-4">
-                    <input type="search" v-model="search" class="form-control" placeholder="Buscar...">
+                    <input type="search" v-model="search" @keyup="buscar()" class="form-control form-control-lg" placeholder="Buscar...">
                 </div>
                 <div class="col-md-4">
                     <a @click="buscar()" class="btn btn-secundario   mt-md-0 text-nowrap">Buscar</a>

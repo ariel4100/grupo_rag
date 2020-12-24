@@ -13,8 +13,8 @@
                     <img :src="item.image" :alt="item.title" class="img-fluid">
                 </div>
             </div>
-            <div class="text-center">
-                <p class="mt-2 text-secundario">{{ item.title || 'PISTONES CON PERNO TIK Y NOZUMI' }}</p>
+            <div class="">
+                <p class="mt-2 text-dark fw-medium">{{ item.title || 'PISTONES CON PERNO TIK Y NOZUMI' }}</p>
             </div>
         </a>
         <a v-if="type == 'blog'" :href="item.ruta" class="p-0  nav-link">
@@ -31,8 +31,8 @@
                     <img :src="item.image" :alt="item.title" class="img-fluid">
                 </div>
             </div>
-            <div class="p-3 text-center">
-                <p class="mt-2 text-secundario">{{ item.title || 'PISTONES CON PERNO TIK Y NOZUMI' }}</p>
+            <div class="p-3  ">
+                <p class="mt-2 text-dark fw-medium">{{ item.title || 'PISTONES CON PERNO TIK Y NOZUMI' }}</p>
             </div>
         </a>
 
@@ -49,8 +49,8 @@
                     <img :src="item.image" :alt="item.title" class="img-fluid">
                 </div>
             </div>
-            <div class="p-3 text-center">
-                <p class="mt-2 text-secundario">{{ item.title || 'PISTONES CON PERNO TIK Y NOZUMI' }}</p>
+            <div class="p-3  ">
+                <p class="mt-2 text-dark fw-medium">{{ item.title || 'PISTONES CON PERNO TIK Y NOZUMI' }}</p>
             </div>
         </a>
     </div>

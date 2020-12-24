@@ -6,17 +6,24 @@
                     <div class="d-flex align-items-center py-2">
 
                         <div class="">
-                            <a :href="item.link" target="_blank" class="px-2 py-1 text-white" v-for="item in $page.redes">
-                                <i class="" :class="item.type"></i>
-                            </a>
+<!--                            <a :href="item.link" target="_blank" class="px-2 py-1 text-white" v-for="item in $page.redes">-->
+<!--                                <i class="" :class="item.type"></i>-->
+<!--                            </a>-->
+                            <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                                <div class="rounded-circle border d-flex justify-content-center align-items-center mx-2" style="height:35px; width: 35px"  v-for="item in $page.redes" >
+                                    <a :href="item.link" target="_blank" class="text-white" >
+                                        <i class="" :class="item.type"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="border-left px-2 d-md-block d-none" v-if="$page.whatsapps.length > 0">
+                        <div class=" px-2 d-md-block d-none" v-if="$page.whatsapps.length > 0">
                             <i class="fab fa-whatsapp"></i>
                             <a :href="'tel:'+wha.numero" v-for="wha in $page.whatsapps.slice(0,1)" class="text-white">
                                 {{ wha.numero_visible }}
                             </a>
                         </div>
-                        <div class="border-left px-2 d-md-block d-none" v-if="$page.emails.length > 0">
+                        <div class=" px-2 d-md-block d-none" v-if="$page.emails.length > 0">
                             <i class="fas fa-envelope"></i>
                             <a :href="'mailto:'+mail.email" class="text-white" v-for="mail in $page.emails.slice(0,1)">
                                 {{ mail.email }}

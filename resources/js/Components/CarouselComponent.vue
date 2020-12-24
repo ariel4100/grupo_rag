@@ -26,11 +26,13 @@
                 </div>
                 <template v-if="arrows == 1">
                     <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<!--                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+                        <i class="fas fa-arrow-left fa-lg text-dark "></i>
                         <span class="sr-only">Previous</span>
                     </a>
                     <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <i class="fas fa-arrow-right fa-lg text-dark "></i>
+<!--                        <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
                         <span class="sr-only">Next</span>
                     </a>
                 </template>

@@ -22,10 +22,20 @@
                 </div>
                 <div class="col-md-9">
                     <div class="row">
-                        <div class="col-md-12 mb-5">
+                        <div class="col-md-12 mb-3">
                             <div class="border">
-                                <carousel :images="gallery"  producto="1"></carousel>
+                                <carousel :images="gallery"  arrows="1" producto="1"></carousel>
                             </div>
+                            <figure class="row mt-4">
+                                <div class="col-md-2"  v-for="item in gallery">
+                                    <img
+                                            :src="item"
+                                            class="figure-img img-fluid rounded shadow-3 mb-3"
+                                            alt="..."
+                                            style="max-height: 90px;"
+                                    />
+                                </div>
+                            </figure>
                         </div>
                         <div class="col-md-12 mb-5">
                             <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">

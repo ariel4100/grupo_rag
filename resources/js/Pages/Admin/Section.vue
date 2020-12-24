@@ -4,67 +4,70 @@
             {{ $page.contenido.section }}
         </template>
         <div class="card" >
-            <div class="card-header">
-                <modal
-                        title="Nuevo Slider"
-                        title-button="Agregar Slider"
-                        @ok="addSlider()"
-                        @hidden="reset()"
-                >
-                    <template #idioma="{ lang }">
-                        <div class="row">
-                            <div class="col-md-10 form-group">
-                                <label for="">Titulo</label>
-                                <input type="text" v-model="slider.title[lang]" class="form-control">
-                            </div>
-                            <div class="col-md-2 form-group">
-                                <label for="">Orden</label>
-                                <input type="text" v-model="slider.order" class="form-control">
-                            </div>
-                            <div class="col-md-12 form-group">
-                                <label for="">Texto</label>
+            <template v-if="['inicio','empresa'].includes($page.contenido.section)">
+                <div class="card-header">
+                    <modal
+                            title="Nuevo Slider"
+                            title-button="Agregar Slider"
+                            @ok="addSlider()"
+                            @hidden="reset()"
+                    >
+                        <template #idioma="{ lang }">
+                            <div class="row">
+                                <div class="col-md-10 form-group">
+                                    <label for="">Titulo</label>
+                                    <input type="text" v-model="slider.title[lang]" class="form-control">
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label for="">Orden</label>
+                                    <input type="text" v-model="slider.order" class="form-control">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label for="">Texto</label>
 
-                                <textarea v-model="slider.text[lang]" class="form-control"  cols="30" rows="3"></textarea>
+                                    <textarea v-model="slider.text[lang]" class="form-control"  cols="30" rows="3"></textarea>
+                                </div>
                             </div>
-                        </div>
-                    </template>
-                    <template #default>
-                        <div class="form-group col-md-12">
-                            <label>Imagen</label>
-                            <image-custom :model.sync="slider.image"></image-custom>
-                        </div>
-                    </template>
-                </modal>
-            </div>
-            <div class="card-body">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Titulo</th>
-                        <th scope="col">Orden</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr v-for="(item,index) in sliders">
-                        <td>
-                            <img :src="item.image" alt="" class="img-fluid" width="100px">
-                        </td>
-                        <td>{{ item.title.es }}</td>
-                        <td>{{ item.order }}</td>
-                        <td>
-                            <button @click="editSlider(item)" class="btn btn-warning btn-circle">
-                                <i class="far fa-edit"></i>
-                            </button>
-                            <button @click="delSlider(item.id)" class="btn btn-danger btn-circle">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                        </template>
+                        <template #default>
+                            <div class="form-group col-md-12">
+                                <label>Imagen</label>
+                                <image-custom :model.sync="slider.image"></image-custom>
+                            </div>
+                        </template>
+                    </modal>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Orden</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(item,index) in sliders">
+                            <td>
+                                <img :src="item.image" alt="" class="img-fluid" width="100px">
+                            </td>
+                            <td>{{ item.title.es }}</td>
+                            <td>{{ item.order }}</td>
+                            <td>
+                                <button @click="editSlider(item)" class="btn btn-warning btn-circle">
+                                    <i class="far fa-edit"></i>
+                                </button>
+                                <button @click="delSlider(item.id)" class="btn btn-danger btn-circle">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+
 
             <div class="card-body">
                 <block v-if="['calidad','laboratorio'].includes($page.contenido.section)"
@@ -76,13 +79,13 @@
                        type="video"
                        :model.sync="videos"
                 ></block>
-                <block v-if="['calidad','inicio','empresa'].includes($page.contenido.section)"
+                <block v-if="['inicio','empresa'].includes($page.contenido.section)"
                        :model.sync="timelines"
                        btn-title="Agregar Textos"
                        only="text"
                        type="texto"
                 ></block>
-                <block v-if="['inicio','calidad','empresa','clientes' ].includes($page.contenido.section)"
+                <block v-if="['calidad','empresa','clientes' ].includes($page.contenido.section)"
                        :model.sync="images"
                        btn-title="Agregar Archivo/Imagen"
                        only="image"

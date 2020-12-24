@@ -358,3 +358,11 @@ ul li a.nav-link:hover{
 .hover-link:hover{
   color: $secondary-color !important;
 }
+
+
+footer.page-footer a {
+  color: #222222;
+}
+footer.page-footer i {
+  color: $primary-color;
+}

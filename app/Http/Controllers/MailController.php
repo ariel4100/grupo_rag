@@ -36,7 +36,7 @@ class MailController extends Controller
 //        dd($request->all());
 
 //        $for = ['soporte@osole.es'];
-        $for = ['simkevicius@ejesflexibles.com.ar'];
+        $for = ['info@rpacataforesisfactory.com'];
 
         Mail::send('mail.contacto', $data, function($msj) use($subject,$for,$file){
             $msj->from(env('MAIL_FROM_ADDRESS'),env('APP_NAME'));
@@ -60,7 +60,7 @@ class MailController extends Controller
 //        dd($request->all());
 
 //        $for = ['soporte@osole.es'];
-        $for = ['simkevicius@ejesflexibles.com.ar'];
+        $for = ['info@rpacataforesisfactory.com'];
         Mail::send('mail.presupuesto', $data, function($msj) use($subject,$for,$file){
             $msj->from(env('MAIL_FROM_ADDRESS'),env('APP_NAME'));
             $msj->replyTo($for);
@@ -80,41 +80,6 @@ class MailController extends Controller
             return Redirect::route('presupuesto')->with(['success' => "Correo enviado correctamente"]);
     }
 
-    public function rrhh(Request $request)
-    {
-
-        $file = $request->avatar ?? 0;
-        $cv = $request->cv ?? 0;
-        $data['data'] = json_decode($request->datos,true);
-        $subject = env('APP_NAME').' - Mensaje de RR-HH de la Pagina Web';
-//        dd($request->all());
-
-//        $for = ['soporte@osole.es'];
-        $for = ['emona@emona.com.ar'];
-        Mail::send('mail.rrhh', $data, function($msj) use($subject,$for,$file,$cv){
-            $msj->from(env('MAIL_FROM_ADDRESS'),env('APP_NAME'));
-            $msj->replyTo($for);
-            $msj->subject($subject);
-            $msj->to($for);
-
-            if($cv) {
-                $msj->attach($cv->getRealPath(), array(
-                        'as' => $cv->getClientOriginalName(), // If you want you can chnage original name to custom name
-                        'mime' => $cv->getMimeType())
-                );
-            }
-            if($file) {
-                $msj->attach($file->getRealPath(), array(
-                        'as' => $file->getClientOriginalName(), // If you want you can chnage original name to custom name
-                        'mime' => $file->getMimeType())
-                );
-            }
-        });
-        if (count(Mail::failures()) > 0)
-            return Redirect::route('rrhh')->withErrors(['error' => "Ha ocurrido un error al enviar el correo"]);
-        else
-            return Redirect::route('rrhh')->with(['success' => "Correo enviado correctamente"]);
-    }
 
     public function suscriptor(Request $request)
     {

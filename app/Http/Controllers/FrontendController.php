@@ -279,25 +279,44 @@ class FrontendController extends Controller
 
     public function buscador(Request $request)
     {
-
+        $productName = $request->name;
         if ($request->name){
-            $productos = Product::where('title', 'LIKE', "%$request->name%")
-                ->orWhere('text', 'LIKE',"%$request->name%")
-                ->get()->map(function ($item) {
-                    return [
-                        'id' => $item->id,
-                        'title' => $item->title,
-                        'text' => $item->description,
-                        'order' => $item->order,
-                        'ruta' => route('producto',$item->slug),
-                        'image' => $item->gallery ? Storage::disk(env('DEFAULT_STORAGE_DISK'))->url($item->gallery[0]) : '',
-                    ];
-                });
+            $productos_all = Product::get();
+//            $productos = Product::where('title', 'LIKE', "%$request->name%")
+////                ->orWhere('text', 'LIKE',"%$request->name%")
+//                ->get()->map(function ($item) {
+//                    return [
+//                        'id' => $item->id,
+//                        'title' => $item->title,
+//                        'text' => $item->description,
+//                        'order' => $item->order,
+//                        'ruta' => route('producto',$item->slug),
+//                        'image' => $item->gallery ? Storage::disk(env('DEFAULT_STORAGE_DISK'))->url($item->gallery[0]) : '',
+//                    ];
+//                });
+
+            $productos = collect($productos_all)->filter(function ($item) use ($productName) {
+                // replace stristr with your choice of matching function
+
+                if (false !== stristr($item->title, $productName)){
+                    return $item;
+                }
+            })->map(function ($item) {
+                return [
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'text' => $item->description,
+                    'order' => $item->order,
+                    'ruta' => route('producto',$item->slug),
+                    'image' => $item->gallery ? Storage::disk(env('DEFAULT_STORAGE_DISK'))->url($item->gallery[0]) : '',
+                ];
+            });
         }else{
             $productos = [];
         }
 
 
+//        dd($productos);
         return Inertia::render('Web/Buscador', [
             'productos' => $productos
         ]);
