@@ -49,15 +49,15 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto text-center text-start d-flex justify-content-between w-100">
+                    <ul class="navbar-nav mx-auto text-center text-start d-flex justify-content-between align-items-center w-100">
                         <li class="nav-item" v-for="item in menu.slice(0,4)" v-if="item.mostrar == 1">
-                            <a class="nav-link fw-medium text-uppercase py-md-4" :class="item.url.split(',').includes($page.currentRouteName) ? 'activo' : ''" :href="route(item.route)">{{ t(item.nombre) }}</a>
+                            <a class="nav-link fw-medium text-uppercase py-md-4"   :style="item.url.split(',').includes($page.currentRouteName) ? 'color:'+item.color : ''" :href="route(item.route)">{{ t(item.nombre) }}</a>
                         </li>
                         <a class="navbar-brand" :href="route('home')">
                             <img :src="$page.header" alt="" class="img-fluid" style="max-width: 255px;">
                         </a>
                         <li class="nav-item" v-for="item in menu.slice(4)" v-if="item.mostrar == 1">
-                            <a class="nav-link fw-medium text-uppercase py-md-4" :class="item.url.split(',').includes($page.currentRouteName) ? 'activo' : ''" :href="route(item.route)">{{ t(item.nombre) }}</a>
+                            <a class="nav-link fw-medium text-uppercase py-md-4"   :style="item.url.split(',').includes($page.currentRouteName) ? 'color:'+item.color : ''" :href="route(item.route)">{{ t(item.nombre) }}</a>
                         </li>
 <!--                        <li class="nav-item bg-primario">-->
 <!--                            <a class="nav-link p-4"   :href="route('buscador')">-->

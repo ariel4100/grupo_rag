@@ -21,7 +21,7 @@
             <div class="row mt-4">
                 <div class="col-md-6 col-lg-6 mb-3" v-for="(file,key) in archivos">
 
-                    <div class="d-flex align-items-center justify-content-between p-3 pb-2" style="background-color: #F8F8F8">
+                    <div class="d-flex align-items-center justify-content-between p-3 pb-2 h-100" style="background-color: #F8F8F8">
                         <div class="">
                             <div class="text-primario mb-1 fw-medium h6" v-html="file.title"></div>
                             <a :href="file.image" download class="text-muted">DESCARGAR</a>

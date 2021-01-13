@@ -8,24 +8,33 @@
                 <!-- Grid row -->
                 <div class="row pt-5">
                     <!-- Grid column -->
-                    <div class="col-md-2 col-lg-2 mx-auto mb-4">
+                    <div class="col-md-4 col-lg-4 mx-auto mb-4">
                         <!-- Content -->
-                        <img :src="$page.footer" alt="" class="img-fluid mx-auto ml-md-0" style="">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img :src="$page.footer" alt="" class="img-fluid mx-auto mr-md-3" style="">
+                            </div>
+                            <div class="col-md-6">
+                                <img :src="$page.image_calidad" alt="" class="img-fluid mx-auto ml-md-0" style="">
+                            </div>
+                        </div>
 
-                        <h6 class="text-primario mt-4">Seguínos en: </h6>
-                        <div class="d-flex align-items-center justify-content-center justify-content-md-start">
-                            <div class="rounded-circle border border-primario d-flex justify-content-center align-items-center mx-2" style="height:40px; width: 40px"  v-for="item in $page.redes" >
-                                <a :href="item.link" target="_blank" class="text-primario" >
-                                    <i class="" :class="item.type"></i>
-                                </a>
+                        <div class="d-flex justify-content-center align-items-center pt-4">
+                            <h6 class="text-primario mt-2">Seguínos en: </h6>
+                            <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                                <div class="rounded-circle border border-primario d-flex justify-content-center align-items-center mx-2" style="height:40px; width: 40px"  v-for="item in $page.redes" >
+                                    <a :href="item.link" target="_blank" class="text-primario" >
+                                        <i class="" :class="item.type"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 col-lg-2 mx-auto mb-4">
-                        <!-- Content -->
-                        <img :src="$page.image_calidad" alt="" class="img-fluid mx-auto ml-md-0" style="">
+<!--                    <div class="col-md-2 col-lg-2 mx-auto mb-4">-->
+<!--                        &lt;!&ndash; Content &ndash;&gt;-->
+<!--                        <img :src="$page.image_calidad" alt="" class="img-fluid mx-auto ml-md-0" style="">-->
 
-                    </div>
+<!--                    </div>-->
                     <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
 
                         <!-- Links -->

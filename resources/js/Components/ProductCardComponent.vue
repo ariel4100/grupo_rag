@@ -9,7 +9,7 @@
                         <!--                        <a :href="item.ruta" class="btn btn-white  btn-rounded text-secundario">VER MÁS</a>-->
                     </div>
                 </div>
-                <div class="p-3 imagen">
+                <div class=" imagen">
                     <img :src="item.image" :alt="item.title" class="img-fluid">
                 </div>
             </div>
