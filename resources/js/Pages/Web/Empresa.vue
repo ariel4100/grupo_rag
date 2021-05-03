@@ -2,11 +2,23 @@
     <web-layout class="">
         <carousel :images="sliders" height="400px"></carousel>
 
+        <div class="container wow fadeIn py-4" :data-wow-delay="'0.2s'">
+            <div class="row"  v-for="(item,index) in textos">
+                <div class="col-md-6">
+                    <img :src="item.image" alt="" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <h3 v-if="item.title" class="mb-3 text-primario">{{ item.title }}</h3>
+                    <p class="mt-4 mt-md-0" v-html="item.text"></p>
+                </div>
+            </div>
+        </div>
             <template >
                 <div class="container wow fadeIn py-4" :data-wow-delay="'0.2s'">
-                    <div class="row">
-                        <div class="col-md-6" v-for="(item,index) in textos">
-                            <h3 class="mb-3 text-primario">{{ item.title }}</h3>
+                    <div class="row"  >
+                        <div class="col-md-3 mt-4" v-for="(item,index) in texto_imagen">
+                            <hr width="25" class="bg-primario pt-1 mb-2">
+                            <h4 class="mb-3 font-weight-bold text-primario">{{ item.title }}</h4>
                             <p class="" v-html="item.text"></p>
                         </div>
                     </div>
@@ -14,16 +26,7 @@
             </template>
 
 
-        <div class="" >
-            <div class="container wow fadeIn py-4" data-wow-delay="0.2s">
-                <div class="row justify-content-center">
-                    <div class="col-md-4 col-lg-4" v-for="(item,index) in texto_imagen">
-                        <img :src="item.image" alt="" class="img-fluid mx-auto">
-                        <div class="my-3 text-center" v-html="item.title"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
 
     </web-layout>

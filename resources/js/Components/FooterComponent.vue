@@ -1,9 +1,18 @@
 <template>
     <!-- Footer -->
-    <footer class="page-footer font-small bg-secundario">
 
+    <footer class="page-footer font-small bg-secundario">
+        <section class="bg-primario py-4">
+            <div class="d-flex align-items-center justify-content-center  ">
+                <div class="rounded-circle border d-flex justify-content-center align-items-center mx-2" style="height:35px; width: 35px"  v-for="item in $page.redes" >
+                    <a :href="item.link" target="_blank" class="text-white" >
+                        <i class="text-white" :class="item.type"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
         <!-- Footer Links -->
-        <div class=" "  style="background-color:#EEEEEE; background-size: cover; background-repeat: no-repeat; background-position: top;">
+        <div class="footer-image" :style="'background-image: url('+$page.appUrl+'/imagenes/footer.jpg );'" style="  background-size: cover; background-repeat: no-repeat; background-position: top;">
             <div class="container text-center text-md-left">
                 <!-- Grid row -->
                 <div class="row pt-5">
@@ -14,21 +23,19 @@
                             <div class="col-md-6">
                                 <img :src="$page.footer" alt="" class="img-fluid mx-auto mr-md-3" style="">
                             </div>
-                            <div class="col-md-6">
-                                <img :src="$page.image_calidad" alt="" class="img-fluid mx-auto ml-md-0" style="">
-                            </div>
+
                         </div>
 
-                        <div class="d-flex justify-content-center align-items-center pt-4">
-                            <h6 class="text-primario mt-2">Seguínos en: </h6>
-                            <div class="d-flex align-items-center justify-content-center justify-content-md-start">
-                                <div class="rounded-circle border border-primario d-flex justify-content-center align-items-center mx-2" style="height:40px; width: 40px"  v-for="item in $page.redes" >
-                                    <a :href="item.link" target="_blank" class="text-primario" >
-                                        <i class="" :class="item.type"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div class="d-flex justify-content-center align-items-center pt-4">-->
+<!--                            <h6 class="text-primario mt-2">Seguínos en: </h6>-->
+<!--                            <div class="d-flex align-items-center justify-content-center justify-content-md-start">-->
+<!--                                <div class="rounded-circle border border-primario d-flex justify-content-center align-items-center mx-2" style="height:40px; width: 40px"  v-for="item in $page.redes" >-->
+<!--                                    <a :href="item.link" target="_blank" class="text-primario" >-->
+<!--                                        <i class="" :class="item.type"></i>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
 <!--                    <div class="col-md-2 col-lg-2 mx-auto mb-4">-->
 <!--                        &lt;!&ndash; Content &ndash;&gt;-->
@@ -38,7 +45,7 @@
                     <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
 
                         <!-- Links -->
-                        <h6 class="text-uppercase text-primario font-weight-bold">{{ t('MAPA DE SITIO')}}</h6>
+                        <h6 class="text-uppercase text-primario font-weight-bold">{{ t('Secciones')}}</h6>
                         <div class="d-flex justify-content-center justify-content-md-start flex-md-row flex-column  ">
                             <div class="mr-md-4">
                                 <p v-for="item in menu.slice(0,4)" class="mb-1">
@@ -58,7 +65,7 @@
                     <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
 
                         <!-- Links -->
-                        <h6 class="text-uppercase text-white font-weight-bold"></h6>
+                        <h6 class="text-uppercase text-primario font-weight-bold">{{ t('Grupo Rag')}}</h6>
                         <div class="d-flex justify-content-center justify-content-md-start flex-md-row flex-column text-white">
                             <ul class="list-group mb-4 mb-md-0 mr-md-3 text-white">
                                 <li class="list-group-item bg-transparent border-0 fz-15 d-flex align-items-center px-0 py-1 mb-2 flex-md-row flex-column">
@@ -68,7 +75,7 @@
                                     </div>
                                 </li>
 
-                                <li class="list-group-item bg-transparent border-0 fz-15 d-flex align-items-center px-0 py-1 mb-2 flex-md-row flex-column">
+                                <li v-if="$page.telefonos.length > 0" class="list-group-item bg-transparent border-0 fz-15 d-flex align-items-center px-0 py-1 mb-2 flex-md-row flex-column">
                                     <i class="fas fa-phone-volume fa-lg mr-md-3 mb-2"></i>
                                     <div class="d-flex flex-column">
                                         <template v-for="item in $page.telefonos">
@@ -80,7 +87,7 @@
                                         </template>
                                     </div>
                                 </li>
-                                <li class="list-group-item bg-transparent  border-0 fz-15 d-flex align-items-center px-0 py-1 mb-2 flex-md-row flex-column">
+                                <li v-if="$page.whatsapps.length > 0" class="list-group-item bg-transparent  border-0 fz-15 d-flex align-items-center px-0 py-1 mb-2 flex-md-row flex-column">
                                     <i class="fab fa-whatsapp fa-lg mr-md-3 mb-md-0 mb-2"></i>
                                     <div class="d-flex flex-column">
                                         <template v-for="item in $page.whatsapps">
@@ -93,7 +100,7 @@
                                     </div>
                                 </li>
 
-                                <li class="list-group-item bg-transparent border-0 d-flex fz-15 px-0 py-1 mb-2 flex-md-row flex-column">
+                                <li v-if="$page.emails.length > 0" class="list-group-item bg-transparent border-0 d-flex fz-15 px-0 py-1 mb-2 flex-md-row flex-column">
                                     <i class="fas fa-envelope fa-lg  mr-md-3 mt-2"></i>
                                     <div class="">
                                         <a :href="'mailto:'+item.email" class="hover-link" v-for="item in $page.emails.slice(0,3)">
@@ -147,9 +154,5 @@
     }
 </script>
 <style>
-    .input-newsletter{
-        background-color: transparent;
-        color: white;
-        border-radius: 5rem
-    }
+
 </style>

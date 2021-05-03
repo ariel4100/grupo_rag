@@ -1,37 +1,20 @@
 <template>
     <web-layout class="">
-        <div class="bg-light">
-            <div class="container">
-                <h5 class="section-title">
-                    {{ t('Políticas de calidad') }}
-                </h5>
-            </div>
-        </div>
+        <carousel :images="sliders"></carousel>
 
-        <div class="container wow fadeIn my-4" data-wow-delay="0.2s">
-            <div class="row" v-for="(item,index) in textos">
-                <div class="col-md-6 col-lg-6 mb-4">
-                    <h4 class="mb-3 font-weight-bold text-primario">{{ item.title }}</h4>
+        <div class="container-fluid wow fadeIn " data-wow-delay="0.2s">
+            <div class="row" >
+                <div class="col-md-6 col-lg-6  d-flex flex-column  px-5 py-5" v-for="(item,index) in textos" :style="index == 0 ? 'background-color: #ECECEC;' : ''">
                     <p class="" v-html="item.text"></p>
-                </div>
-                <div class="col-md-6 col-lg-6 mb-4">
-                    <img :src="item.image" alt="" class="img-fluid mx-auto w-100">
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-6 col-lg-6 mb-3" v-for="(file,key) in archivos">
-
-                    <div class="d-flex align-items-center justify-content-between p-3 pb-2 h-100" style="background-color: #F8F8F8">
-                        <div class="">
-                            <div class="text-primario mb-1 fw-medium h6" v-html="file.title"></div>
-                            <a :href="file.image" download class="text-muted">DESCARGAR</a>
-                        </div>
-                        <a :href="file.image" download class=""><i class="fas fa-file-download fa-2x text-primario"></i></a>
+                    <div class="text-center mt-auto">
+                        <a :href="item.image" donwload class="btn btn-primario  rounded-pill text-white">
+                            {{ item.title }}
+                            <i class="fas fa-download fa-lg text-primario rounded-circle p-2 bg-white"></i>
+                        </a>
                     </div>
-
                 </div>
-
             </div>
+
         </div>
 
     </web-layout>

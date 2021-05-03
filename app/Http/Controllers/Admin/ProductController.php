@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -19,20 +20,28 @@ class ProductController extends Controller
     {
 
 //        dd($categoriasconhijos);
-        $productos = Product::get();
+        $productos = Product::orderBy('order')->get();
+        $familias = Family::orderBy('order')->get();
 //        $productos_aguila = Product::on(env('aguila'))->get();
 
 //        dd($productos);
         return Inertia::render('Admin/Product', [
-            'familias' => [],
+            'familias' => $familias->map(function ($item) {
+                return [
+                    'id' => $item->id,
+                    'title' => $item->title ? $item->title : ['es' => ''],
+                    'order' => $item->order,
+
+                ];
+            }),
             'subfamilias' => [],
 
             'productos' => $productos->map(function ($item) {
                 return [
                     'id' => $item->id,
-                    'title' => $item->title ? $item->getTranslations('title') : ['es' => ''],
-                    'description' => $item->description ? $item->getTranslations('description') : ['es' => ''],
-                    'text' => $item->text ? $item->getTranslations('text') : ['es' => ''],
+                    'title' => $item->title  ,
+                    'description' => $item->description ,
+                    'text' => $item->text ,
                     'text_video' => $item->text_video ? $item->getTranslations('text_video') : ['es' => ''],
                     'order' => $item->order,
                     'featured' => $item->featured,
@@ -70,12 +79,18 @@ class ProductController extends Controller
 
 //            dd([$images]);
 
-            $item->setTranslations('title', (array) json_decode($request->title));
-            $item->setTranslations('description', (array) json_decode($request->description));
-            $item->setTranslations('text', (array) json_decode($request->text));
-            $item->setTranslations('text_video', (array) json_decode($request->text_video));
-            $item->setTranslations('slug', collect(json_decode($request->title))->slug()->toArray());
+//            $item->setTranslations('title', (array) json_decode($request->title));
+//            $item->setTranslations('description', (array) json_decode($request->description));
+//            $item->setTranslations('text', (array) json_decode($request->text));
+//            $item->setTranslations('text_video', (array) json_decode($request->text_video));
+//            $item->setTranslations('slug', collect(json_decode($request->title))->slug()->toArray());
+            $item->title   = $request->title;
+            $item->description   = $request->description;
+            $item->text   = $request->text;
+            $item->text_video   = $request->text_video;
             $item->order   = $request->order;
+            $item->family_id   = $request->family_id;
+            $item->slug   = str::slug($request->title);
             $item->gallery   = @$images;
             isset($request->featured) ? $item->featured = 1 : $item->featured = 0;
             $item->video   = $request->video;
@@ -136,11 +151,11 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::find($id)->delete();
-        return response()->json([
-            'status' => 'success',
-            'message' => __('category.store.error-default'),
-        ]);
-//        session()->flash('message', 'Se elimino correctamente.');
-//        return Redirect::route('adm.productos.index');
+//        return response()->json([
+//            'status' => 'success',
+//            'message' => __('category.store.error-default'),
+//        ]);
+        session()->flash('message', 'Se elimino correctamente.');
+        return Redirect::route('adm.productos.index');
     }
 }

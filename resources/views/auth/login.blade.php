@@ -22,12 +22,12 @@
             {{--            </div>--}}
 
             <div>
-                <x-jet-label for="username" value="{{ __('Username') }}" />
+                <x-jet-label for="username" value="{{ __('Usuario') }}" />
                 <x-jet-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus />
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
+                <x-jet-label for="password" value="{{ __('Contraseña') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
@@ -46,7 +46,7 @@
                 {{--                @endif--}}
 
                 <x-jet-button class="ml-4">
-                    {{ __('Login') }}
+                    {{ __('Ingresar') }}
                 </x-jet-button>
             </div>
         </form>

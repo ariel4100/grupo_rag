@@ -1,9 +1,10 @@
 <template>
     <web-layout class="">
-        <div class="bg-light">
+
+        <div class="bg-primario">
             <div class="container">
-                <h5 class="section-title">
-                    {{ t('Solicitar presupuesto') }}
+                <h5 class="section-title text-white">
+                    {{ t('Solicitud de presupuesto') }}
                 </h5>
             </div>
         </div>
@@ -33,7 +34,7 @@
                             <input type="text" class="form-control" v-model="mail.empresa" required placeholder="Empresa">
                         </div>
                         <div class="col-md-12 text-right mt-4">
-                            <a @click="next()" class="btn btn-primario text-white">siguiente <i class="fas fa-chevron-right"></i></a>
+                            <a @click="next()" class="btn btn-primary rounded-pill px-5 text-white">siguiente <i class="fas ml-3 fa-chevron-right text-primario rounded-circle p-2 bg-white"></i></a>
                         </div>
                     </div>
                     <div v-if="step == 2" class="row">
@@ -51,9 +52,9 @@
                             </div>
                         </div>
                         <div class="col-md-12 d-flex justify-content-between align-items-center mt-4">
-                            <a @click="prev()" class="btn btn-outline-primario text-color ">VOLVER</a>
-                            <a @click="enviar()" v-if="loading == 0" class="btn btn-primario  text-white">Consultar <i class="fas fa-chevron-right"></i></a>
-                            <a v-if="loading == 1" class="btn btn-primario  text-white">ENVIANDO <i class="fas fa-spinner fa-spin "></i></a>
+                            <a @click="prev()" class="btn btn-outline-primario text-color rounded-pill">VOLVER</a>
+                            <a @click="enviar()" v-if="loading == 0" class="btn btn-primary rounded-pill px-5 text-white">ENVIAR <i class="fas ml-3 fa-chevron-right bg-white p-2 text-primario rounded-circle"></i></a>
+                            <a v-if="loading == 1" class="btn btn-primary rounded-pill px-5 text-white">ENVIANDO <i class="fas fa-spinner fa-spin "></i></a>
                         </div>
                     </div>
 

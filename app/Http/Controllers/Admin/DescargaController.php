@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Extensions\Helpers;
 use App\Http\Controllers\Controller;
-use App\Models\Client;
-use App\Models\Descargas;
-use App\Models\Download;
+use App\Models\Donwload;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +16,7 @@ class DescargaController extends Controller
 {
     public function index()
     {
-        $items = Download::get();
+        $items = Donwload::orderBy('order')->get();
 
 //        $items = Descargas::orderBy('order')->get();
 
@@ -26,7 +24,7 @@ class DescargaController extends Controller
             'categorias' => $items->map(function ($item) {
                 return [
                     'id' => $item->id,
-                    'title' => $item->getTranslations('title'),
+                    'title' => $item->title,
                     'order' => $item->order,
                     'image' => $item->image ? Storage::disk(env('DEFAULT_STORAGE_DISK'))->url($item->image) : '',
                     'file' => $item->file ? Storage::disk(env('DEFAULT_STORAGE_DISK'))->url($item->file) : '',
@@ -42,9 +40,9 @@ class DescargaController extends Controller
         try {
             DB::beginTransaction();
             if ($request->id){
-                $item = Download::find($request->id);
+                $item = Donwload::find($request->id);
             }else{
-                $item = new Download();
+                $item = new Donwload();
             }
 
             $file_save = Helpers::saveImage($request->file('image'), 'descagas',$item->image);
@@ -53,7 +51,7 @@ class DescargaController extends Controller
             $file_save = Helpers::saveImage($request->file('file'), 'descagas',$item->file);
             $file_save ? $item->file = $file_save : false;
 
-            $item->setTranslations('title', (array) json_decode($request->title));
+            $item->title = $request->title;
             $request->order ? $item->order = $request->order : false;
 
             $item->save();
@@ -72,7 +70,7 @@ class DescargaController extends Controller
 
     public function destroy($id)
     {
-        Download::find($id)->delete();
+        Donwload::find($id)->delete();
         session()->flash('message', 'Se elimino correctamente.');
         return Redirect::route('adm.descargas.index');
     }

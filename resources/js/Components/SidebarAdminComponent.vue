@@ -302,32 +302,33 @@
                         submenu: [],
                         ruta: route('adm.content.index',{ section: 'empresa'}),
                     },
+
                     {
-                        nombre: 'Tratamientos',
+                        nombre: 'Productos',
+                        icon: '<i class="fas fa-cart-plus"></i>',
+                        submenu: [
+                            {
+                                nombre: 'Familias',
+                                ruta: route('adm.familias.index'),
+                            },
+                            {
+                                nombre: 'Productos',
+                                ruta: route('adm.productos.index'),
+                            },
+                        ],
+                        ruta: route('adm.content.index',{ section: 'contacto'}),
+                    },
+                    {
+                        nombre: 'Servicios',
                         icon: '<i class="fas fa-list-ul"></i>',
                         submenu: [],
-                        ruta: route('adm.productos.index'),
+                        ruta: route('adm.content.index',{ section: 'servicios'}),
                     },
-                    // {
-                    //     nombre: 'Productos',
-                    //     icon: '<i class="fas fa-cart-plus"></i>',
-                    //     submenu: [
-                    //         {
-                    //             nombre: 'Familias',
-                    //             ruta: route('adm.familias.index'),
-                    //         },
-                    //         {
-                    //             nombre: 'Productos',
-                    //             ruta: route('adm.productos.index'),
-                    //         },
-                    //     ],
-                    //     ruta: route('adm.content.index',{ section: 'contacto'}),
-                    // },
                     {
-                        nombre: 'Clientes',
-                        icon: '<i class="fas fa-user-check"></i>',
+                        nombre: 'Industrias',
+                        icon: '<i class="fas far fa-building"></i>',
                         submenu: [],
-                        ruta: route('adm.content.index',{ section: 'Clientes'}),
+                        ruta: route('adm.content.index',{ section: 'industrias'}),
                     },
                     {
                         nombre: 'Calidad',
@@ -336,10 +337,10 @@
                         ruta: route('adm.content.index',{ section: 'calidad'}),
                     },
                     {
-                        nombre: 'Laboratorio',
-                        icon: '<i class="far fa-building"></i>',
+                        nombre: 'Descargas',
+                        icon: '<i class="fas fa-download"></i>',
                         submenu: [],
-                        ruta: route('adm.content.index',{ section: 'laboratorio'}),
+                        ruta: route('adm.descargas.index'),
                     },
                     {
                         nombre: 'Contacto',

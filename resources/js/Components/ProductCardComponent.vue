@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="h-100">
         <a v-if="type == 1" :href="item.ruta" class="p-0  nav-link">
             <div class="product-card position-relative border">
                 <div class="product-card__mask">
@@ -49,8 +49,9 @@
                     <img :src="item.image" :alt="item.title" class="img-fluid">
                 </div>
             </div>
-            <div class="p-3  ">
-                <p class="mt-2 text-dark fw-medium">{{ item.title || 'PISTONES CON PERNO TIK Y NOZUMI' }}</p>
+            <div class="py-3  ">
+                <hr width="90" class="mt-0 bg-primario">
+                <h5 class="mt-2 px-2 text-primario font-weight-bold">{{ item.title || 'GRUPO RAG' }}</h5>
             </div>
         </a>
     </div>

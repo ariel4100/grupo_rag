@@ -1,16 +1,21 @@
 <template>
     <web-layout class="">
-        <div class="bg-light">
+        <div class="bg-primario">
             <div class="container">
-                <h5 class="section-title text-dark">
-                    <i class="fas fa-home"></i>
-                    <a :href="route('familias')" class="text-dark">
-                        {{ t('PRODUCTOS') }}
+                <h5 class="section-title text-white">
+                    <i class="fas fa-home text-white"></i>
+                    <a :href="route('familias')" class="text-white">
+                        {{ t('Productos') }}
+                    </a>
+                    <a v-if="familia" :href="route('productos',{ slug: familia.slug })" class="text-white">
+                        {{ (familia ? '| '+familia.title : '') }}
                     </a>
                     {{ (producto ? '| '+producto.title : '') }}
+
                 </h5>
             </div>
         </div>
+
         <div class="container my-5">
             <div class="row">
                 <div class="col-md-3">
@@ -22,7 +27,7 @@
                 </div>
                 <div class="col-md-9">
                     <div class="row">
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-6 mb-3">
                             <div class="border">
                                 <carousel :images="gallery"  arrows="1" producto="1"></carousel>
                             </div>
@@ -37,24 +42,27 @@
                                 </div>
                             </figure>
                         </div>
-                        <div class="col-md-12 mb-5">
+                        <div class="col-md-6 mb-5">
                             <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
-                                <h4 class="text-dark font-weigth-bold">
+                                <h3 class="text-primario font-weight-bold">
                                     {{ producto.title }}
-                                </h4>
-                                <a :href="route('presupuesto')" class="btn btn-primario text-white">Solicitar presupuesto</a>
+                                </h3>
+                                <div class="py-3" v-html="producto.text"></div>
+
+                                <a v-if="producto.file" :href="producto.file" target="_blank" class="btn btn-outline-primario rounded-pill text-primario">
+                                    Ficha Técnica
+                                    <i class="fas fa-file-download text-primario pl-2"></i>
+                                </a>
+                                <a :href="route('presupuesto')" class="btn btn-primario rounded-pill text-white">Solicitar presupuesto</a>
                             </div>
 
-                            <div class="" v-html="producto.text"></div>
                         </div>
-                        <div class="col-md-4 mb-5 d-flex justify-content-center align-items-center pr-md-0" v-if="producto.video" style="background-color:#F6F6F6;">
-                            <div class="py-4">
-                                <p style="white-space: pre-line;">{{ producto.text_video }}</p>
+                        <div class="col-md-12  " v-if="producto.description"  >
+                            <div class="py-4" v-html="producto.description">
+
                             </div>
                         </div>
-                        <div class="col-md-8 mb-5 pl-md-0" v-if="producto.video">
-                            <iframe width="100%" height="300" :src="'https://www.youtube.com/embed/'+producto.video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
+
 
                     </div>
                 </div>

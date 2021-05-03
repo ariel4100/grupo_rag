@@ -2,13 +2,13 @@
     <app-layout>
 
         <template #header>
-            Tratamientos
+            Producto
         </template>
         <div class="card">
             <div class="card-header">
                 <modal
-                        title="Tratamiento"
-                        title-button="Agregar Tratamiento"
+                        title="Producto"
+                        title-button="Agregar Producto"
                         @ok="add()"
                         @hidden="reset()"
                 >
@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-md-10 form-group">
                                 <label for="">Titulo</label>
-                                <input type="text" v-model="product.title[lang]" class="form-control">
+                                <input type="text" v-model="product.title " class="form-control">
                             </div>
                             <div class="col-md-2 form-group">
                                 <label for="">Orden</label>
@@ -24,38 +24,46 @@
                             </div>
                             <div class="col-md-12 form-group">
                                 <label for="">Texto</label>
-                                <jodit-vue v-model="product.text[lang]" :id="'Texto-'+lang"></jodit-vue>
+                                <jodit-vue v-model="product.text " :id="'Texto-'+lang"></jodit-vue>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Texto de Video</label>
-                                    <textarea v-model="product.text_video[lang]" class="form-control"  cols="30" rows="3"></textarea>
-                                </div>
+                            <div class="col-md-12 form-group">
+                                <label for="Tabla">Tabla</label>
+                                <jodit-vue v-model="product.description " :id="'Tabla'"></jodit-vue>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Codigo de youtube - <small>https://www.youtube.com/watch?v=<b>V74HTkRH_Rg</b></small></label>
-                                    <input type="text" v-model="product.video" class="form-control">
-                                </div>
-                                <div class="embed-responsive embed-responsive-16by9" >
-                                    <iframe class="embed-responsive-item" :src="'https://www.youtube.com/embed/'+product.video" allowfullscreen></iframe>
-                                </div>
-                            </div>
+<!--                            <div class="col-md-6">-->
+<!--                                <div class="form-group">-->
+<!--                                    <label for="">Texto de Video</label>-->
+<!--                                    <textarea v-model="product.text_video[lang]" class="form-control"  cols="30" rows="3"></textarea>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6">-->
+<!--                                <div class="form-group">-->
+<!--                                    <label for="">Codigo de youtube - <small>https://www.youtube.com/watch?v=<b>V74HTkRH_Rg</b></small></label>-->
+<!--                                    <input type="text" v-model="product.video" class="form-control">-->
+<!--                                </div>-->
+<!--                                <div class="embed-responsive embed-responsive-16by9" >-->
+<!--                                    <iframe class="embed-responsive-item" :src="'https://www.youtube.com/embed/'+product.video" allowfullscreen></iframe>-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </div>
                     </template>
                     <template #default>
 
                         <div class="row">
-                            <div class="form-group col-md-12 d-flex align-items-end">
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" v-model="product.featured" :true-value="1" :false-value="0" id="customSwitch1">
-                                    <label class="custom-control-label" for="customSwitch1">Mostrar en la Sección Principal?</label>
-                                </div>
+                            <div class="col-md-12 form-group">
+                                <label for="">Familias</label>
+                                <multiselect v-model="familia_selected"  @select="clear_family" :options="familias" placeholder="Familia" label="title" track-by="id"></multiselect>
                             </div>
-<!--                            <div class="form-group col-md-6">-->
-<!--                                <label>Archivo</label>-->
-<!--                                <image-custom :model.sync="product.file"></image-custom>-->
+<!--                            <div class="form-group col-md-12 d-flex align-items-end">-->
+<!--                                <div class="custom-control custom-switch">-->
+<!--                                    <input type="checkbox" class="custom-control-input" v-model="product.featured" :true-value="1" :false-value="0" id="customSwitch1">-->
+<!--                                    <label class="custom-control-label" for="customSwitch1">Mostrar en la Sección Principal?</label>-->
+<!--                                </div>-->
 <!--                            </div>-->
+                            <div class="form-group col-md-6">
+                                <label>Archivo</label>
+                                <image-custom :model.sync="product.file"></image-custom>
+                            </div>
                             <div class="col-md-12" >
                                 <label>Agregar fotos</label>
                                 <custom-gallery   label="" :model.sync="product.gallery" :link="0" class=""></custom-gallery>
@@ -133,9 +141,9 @@
               familia_selected: '',
               product: {
                   id: '',
-                  title: {},
-                  description: {},
-                  text: {},
+                  title: '',
+                  description: '',
+                  text: '',
                   text_video: {},
                   family_id: '',
                   video: '',
@@ -176,9 +184,9 @@
             reset(){
                 this.product = {
                     id: '',
-                    title: {},
-                    description: {},
-                    text: { es: ''},
+                    title: '',
+                    description: '',
+                    text: '',
                     text_video: {},
                     family_id: '',
                     video: '',
@@ -215,10 +223,10 @@
 
 
                 data.append('id', this.product.id)
-                data.append('title', JSON.stringify(this.product.title) || '')
-                data.append('text', JSON.stringify(this.product.text) || '')
+                data.append('title', this.product.title || '')
+                data.append('text', this.product.text || '')
                 data.append('text_video', JSON.stringify(this.product.text_video) || '')
-                data.append('description', JSON.stringify(this.product.description) || '')
+                data.append('description', this.product.description || '')
                 data.append('productos', JSON.stringify(this.product.productos || []))
                 data.append('family_id', this.familia_selected.id || '')
                 data.append('banner', this.product.banner || '')

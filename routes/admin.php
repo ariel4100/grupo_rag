@@ -36,7 +36,10 @@ Route::get('/block-destroy/{id}', [ContentController::class, 'destroy_block'])->
 Route::resource('productos', ProductController::class);
 Route::resource('usuarios', UserController::class);
 Route::resource('familias', FamilyController::class);
+Route::resource('descargas', DescargaController::class);
 Route::resource('metas', MetaController::class);
+Route::get('categoria-servicios', [CategoryController::class, 'index'])->name('category.servicios');
+Route::get('categoria-industrias', [CategoryController::class, 'industrias'])->name('category.industrias');
 //Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
 
 //Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

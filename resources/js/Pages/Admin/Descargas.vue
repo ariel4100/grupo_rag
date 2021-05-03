@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-md-10 form-group">
                                 <label for="">Titulo</label>
-                                <input type="text" v-model="category.title[lang]" class="form-control">
+                                <input type="text" v-model="category.title" class="form-control">
                             </div>
                             <div class="col-md-2 form-group">
                                 <label for="">Orden</label>
@@ -78,7 +78,7 @@
               // selectedValue: [],
               category: {
                   id: '',
-                  title: {},
+                  title: '',
                   text: {},
                   file: '',
                   featured: 0,
@@ -103,7 +103,7 @@
             reset(){
                 this.category = {
                     id: '',
-                    title: {},
+                    title: '',
                     text: {},
                     file: '',
                     featured: 0,
@@ -115,7 +115,8 @@
                 let data = new FormData()
 
                 data.append('id', this.category.id)
-                data.append('title', JSON.stringify(this.category.title) || '')
+                // data.append('title', JSON.stringify(this.category.title) || '')
+                data.append('title', this.category.title || '')
                 data.append('image', this.category.image || '')
                 data.append('file', this.category.file || '')
                 data.append('order', this.category.order || '')

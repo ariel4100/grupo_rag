@@ -98,7 +98,7 @@
                 </div>
             </template>
             <template #cell(title)="row">
-                {{ row.value.es || ''  }}
+                {{ row.value.es || row.value  }}
 
             </template>
 

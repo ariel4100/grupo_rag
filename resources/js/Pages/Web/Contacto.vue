@@ -1,5 +1,12 @@
 <template>
     <web-layout class="">
+        <div class="bg-primario">
+            <div class="container">
+                <h5 class="section-title text-white">
+                    {{ t('Contacto') }}
+                </h5>
+            </div>
+        </div>
         <div class="" v-html="contenido.title"></div>
         <div class="container my-5">
             <div v-if="$page.flash.success" class="alert alert-success">
@@ -14,9 +21,12 @@
 <!--                    <h2 class="text-primario  text-uppercase">-->
 <!--                        Contacto-->
 <!--                    </h2>-->
-                    <p>
+                    <p class="text-muted">
                         Para mayor información, no dude en contactarse mediante el siguiente formulario, o a través de nuestras vías de comunicación.
                     </p>
+                    <h4 class="text-primario font-weight-bold">
+                        GRUPO RAG
+                    </h4>
                     <ul class="list-group">
                         <li class="list-group-item bg-transparent border-0 d-flex px-0  ">
                             <i class="fas fa-map-marker-alt fa-lg text-primario mr-2"></i>

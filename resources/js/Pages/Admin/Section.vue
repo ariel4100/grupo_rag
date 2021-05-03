@@ -4,7 +4,7 @@
             {{ $page.contenido.section }}
         </template>
         <div class="card" >
-            <template v-if="['inicio','empresa'].includes($page.contenido.section)">
+            <template v-if="['inicio','empresa','calidad'].includes($page.contenido.section)">
                 <div class="card-header">
                     <modal
                             title="Nuevo Slider"
@@ -70,7 +70,7 @@
 
 
             <div class="card-body">
-                <block v-if="['calidad','laboratorio'].includes($page.contenido.section)"
+                <block v-if="['empresa','inicio','calidad'].includes($page.contenido.section)"
                        :model.sync="bloques"
                 ></block>
                 <block v-if="['videos'].includes($page.contenido.section)"
@@ -85,7 +85,7 @@
                        only="text"
                        type="texto"
                 ></block>
-                <block v-if="['calidad','empresa','clientes' ].includes($page.contenido.section)"
+                <block v-if="['calidad','empresa','inicio','servicios','industrias'].includes($page.contenido.section)"
                        :model.sync="images"
                        btn-title="Agregar Archivo/Imagen"
                        only="image"

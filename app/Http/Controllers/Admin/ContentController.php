@@ -63,8 +63,8 @@ class ContentController extends Controller
             'sliders' => $sliders->map(function ($item) {
                 return [
                     'id' => $item->id,
-                    'title' => $item->getTranslations('title'),
-                    'text' => $item->getTranslations('text'),
+                    'title' => $item->title ? $item->getTranslations('title') : ['es' => ''],
+                    'text' => $item->text ? $item->getTranslations('text') : ['es' => ''],
                     'order' => $item->order,
                     'image' => $item->image ? Storage::disk(env('DEFAULT_STORAGE_DISK'))->url($item->image) : '',
                 ];
@@ -116,6 +116,7 @@ class ContentController extends Controller
 
     public function slider(Request $request)
     {
+
 //        return dd($request->all());
 
         try {

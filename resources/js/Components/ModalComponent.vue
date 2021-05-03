@@ -17,9 +17,9 @@
                 <template v-if="idioma">
                     <b-tabs card>
                         <b-tab v-for="(lang,key) in Object.keys($page.idioma)" :key="'dyn-tab-' + key" :title="$page.idioma[lang].name">
-                            <!--                        <pre>-->
-                            <!--                            {{ $page.idioma[lang].name }}-->
-                            <!--                        </pre>-->
+<!--                                                    <pre>-->
+<!--                                                        {{ $page.idioma  }}-->
+<!--                                                    </pre>-->
                             <slot name="idioma" :lang="lang"></slot>
                         </b-tab>
                     </b-tabs>
@@ -46,7 +46,8 @@
             }
         },
         created(){
-          this.idioma = this.lang == false ? 0 : 1
+            console.log(this.$page)
+             this.idioma = this.lang == false ? 0 : 1
         },
         methods: {
             checkFormValidity() {

@@ -38,9 +38,10 @@ Route::get('link', function () {
 //Secciones
 Route::get('/', [FrontendController::class, 'home'])->name('home');
 Route::get('empresa', [FrontendController::class, 'empresa'])->name('empresa');
-Route::get('clientes', [FrontendController::class, 'clientes'])->name('clientes');
+Route::get('servicios', [FrontendController::class, 'servicios'])->name('servicios');
+Route::get('industrias', [FrontendController::class, 'industrias'])->name('industrias');
 Route::get('calidad', [FrontendController::class, 'calidad'])->name('calidad');
-Route::get('laboratorio', [FrontendController::class, 'laboratorio'])->name('laboratorio');
+Route::get('descargas', [FrontendController::class, 'descargas'])->name('descargas');
 Route::get('buscador', [FrontendController::class, 'buscador'])->name('buscador');
 Route::get('contacto', [FrontendController::class, 'contacto'])->name('contacto');
 Route::post('contacto', [MailController::class, 'contacto'])->name('mail.contacto');
