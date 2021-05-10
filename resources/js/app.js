@@ -91,7 +91,7 @@ Vue.mixin({
                 {
                     nombre: 'Servicios',
                     route: 'servicios',
-                    url: 'clientes',
+                    url: 'servicios',
                     mostrar: 1,
                     color: '#479837',
                 },

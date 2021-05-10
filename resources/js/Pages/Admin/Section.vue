@@ -79,13 +79,13 @@
                        type="video"
                        :model.sync="videos"
                 ></block>
-                <block v-if="['inicio','empresa'].includes($page.contenido.section)"
+                <block v-if="[ 'empresa'].includes($page.contenido.section)"
                        :model.sync="timelines"
                        btn-title="Agregar Textos"
                        only="text"
                        type="texto"
                 ></block>
-                <block v-if="['calidad','empresa','inicio','servicios','industrias'].includes($page.contenido.section)"
+                <block v-if="['calidad', 'inicio','servicios','industrias'].includes($page.contenido.section)"
                        :model.sync="images"
                        btn-title="Agregar Archivo/Imagen"
                        only="image"

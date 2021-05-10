@@ -52,7 +52,12 @@
                         <div class="row">
                             <div class="col-md-12 form-group">
                                 <label for="">Familias</label>
-                                <multiselect v-model="familia_selected"  @select="clear_family" :options="familias" placeholder="Familia" label="title" track-by="id"></multiselect>
+                                <select v-model="product.family_id" id="" class="form-control">
+                                    <option :value="item.id" v-for="item in familias" :key="item.id">
+                                        {{ item.title || ''}}
+                                    </option>
+                                </select>
+                                <!-- <multiselect v-model="familia_selected"  @select="clear_family" :options="familias" placeholder="Familia" label="title" track-by="id"></multiselect> -->
                             </div>
 <!--                            <div class="form-group col-md-12 d-flex align-items-end">-->
 <!--                                <div class="custom-control custom-switch">-->
@@ -60,6 +65,14 @@
 <!--                                    <label class="custom-control-label" for="customSwitch1">Mostrar en la Sección Principal?</label>-->
 <!--                                </div>-->
 <!--                            </div>-->
+
+                           <div class="col-md-12 form-group">
+                               <label for="">Productos Relacionados</label>
+                               <select-multiple
+                                       :data="productos_detalle"
+                                       :model.sync="product.productos"
+                               ></select-multiple>
+                           </div>
                             <div class="form-group col-md-6">
                                 <label>Archivo</label>
                                 <image-custom :model.sync="product.file"></image-custom>
@@ -132,6 +145,7 @@
         props: {
             familias: Array,
             subfamilias: Array,
+            productos_detalle: Array,
             productos: Array,
             contenido: Object,
             section: '',
@@ -228,7 +242,8 @@
                 data.append('text_video', JSON.stringify(this.product.text_video) || '')
                 data.append('description', this.product.description || '')
                 data.append('productos', JSON.stringify(this.product.productos || []))
-                data.append('family_id', this.familia_selected.id || '')
+                // data.append('family_id', this.familia_selected.id || '')
+                data.append('family_id', this.product.family_id || '')
                 data.append('banner', this.product.banner || '')
                 data.append('archivo', this.product.file || '')
                 data.append('video', this.product.video || '')

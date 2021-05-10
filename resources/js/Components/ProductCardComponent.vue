@@ -41,7 +41,7 @@
                 <div class="product-card__mask">
                     <div class="">
 <!--                        <h5 class="my-2 text-left  text-white">{{ item.title }}</h5>-->
-                        <i class="fas fa-plus fa-2x"></i>
+                        <i class="fas fa-plus text-white fa-2x"></i>
 <!--                        <a :href="item.ruta" class="btn btn-white  btn-rounded text-secundario">VER MÁS</a>-->
                     </div>
                 </div>

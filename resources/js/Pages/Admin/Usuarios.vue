@@ -135,18 +135,19 @@
                     cancelButtonText: 'No'
                 }).then((result) => {
                     if (result.value) {
-                        axios.delete(route('adm.usuarios.destroy',{id: id})).then((res)=>{
-                            console.log(res)
-                            if (res.data.status == 'success'){
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Se elimino correctamente',
-                                    showConfirmButton: false,
-                                    timer: 2000
-                                })
-                                this.$inertia.visit(route('adm.usuarios.index'), { method: 'get' })
-                            }
-                        })
+                        this.$inertia.delete(route('adm.usuarios.destroy',{id: id}))
+                        // axios.delete(route('adm.usuarios.destroy',{id: id})).then((res)=>{
+                        //     console.log(res)
+                        //     if (res.data.status == 'success'){
+                        //         Swal.fire({
+                        //             icon: 'success',
+                        //             title: 'Se elimino correctamente',
+                        //             showConfirmButton: false,
+                        //             timer: 2000
+                        //         })
+                        //         this.$inertia.visit(route('adm.usuarios.index'), { method: 'get' })
+                        //     }
+                        // })
                     }
                 })
 

@@ -16,7 +16,7 @@
             <template >
                 <div class="container wow fadeIn py-4" :data-wow-delay="'0.2s'">
                     <div class="row"  >
-                        <div class="col-md-3 mt-4" v-for="(item,index) in texto_imagen">
+                        <div class="col-md-6 col-lg-3 mt-4" v-for="(item,index) in texto_imagen">
                             <hr width="25" class="bg-primario pt-1 mb-2">
                             <h4 class="mb-3 font-weight-bold text-primario">{{ item.title }}</h4>
                             <p class="" v-html="item.text"></p>

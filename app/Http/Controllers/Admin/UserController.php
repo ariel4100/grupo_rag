@@ -76,9 +76,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        return response()->json([
-            'status' => 'success',
-            'message' => __('category.store.error-default'),
-        ]);
+        session()->flash('message', 'Se elimino correctamente.');
+        return Redirect::route('adm.usuarios.index');
+
+        // return response()->json([
+        //     'status' => 'success',
+        //     'message' => __('category.store.error-default'),
+        // ]);
     }
 }

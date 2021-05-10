@@ -31,16 +31,7 @@
                             <div class="border">
                                 <carousel :images="gallery"  arrows="1" producto="1"></carousel>
                             </div>
-                            <figure class="row mt-4">
-                                <div class="col-md-2"  v-for="item in gallery">
-                                    <img
-                                            :src="item"
-                                            class="figure-img img-fluid rounded shadow-3 mb-3"
-                                            alt="..."
-                                            style="max-height: 90px;"
-                                    />
-                                </div>
-                            </figure>
+                             
                         </div>
                         <div class="col-md-6 mb-5">
                             <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
@@ -57,13 +48,21 @@
                             </div>
 
                         </div>
-                        <div class="col-md-12  " v-if="producto.description"  >
-                            <div class="py-4" v-html="producto.description">
+                        <div class="col-md-12" v-if="producto.description"  >
+                            <div class="table-responsive">
+                                <div class="py-4" v-html="producto.description">
 
+                                </div>
                             </div>
                         </div>
-
-
+                        <div class="col-md-12" v-if="producto_related.length > 0">
+                            <h4 class="font-weight-bold text-primario my-4">PRODUCTOS RELACIONADOS </h4>
+                             <div class="row">
+                                <div class="col-sm-6 col-md-4 col-lg-4 mb-5"  v-for="item in producto_related" :key="item.id">
+                                    <product-card :item="item"></product-card>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,6 +82,7 @@
             gallery: Array,
             productos: Array,
             familias: Array,
+            producto_related: Array,
             producto: Object,
             familia: Object,
         },

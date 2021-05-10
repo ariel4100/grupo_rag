@@ -22,12 +22,12 @@
                                 <label for="">Orden</label>
                                 <input type="text" v-model="category.order" class="form-control" placeholder="aa, bb, cc, etc...">
                             </div>
-                            <div class="form-group col-md-6 d-flex align-items-end">
+                            <!-- <div class="form-group col-md-6 d-flex align-items-end">
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox" class="custom-control-input" v-model="category.featured" :true-value="1" :false-value="0" id="customSwitch1">
                                     <label class="custom-control-label" for="customSwitch1">Mostrar en la Sección Principal?</label>
                                 </div>
-                            </div>
+                            </div> -->
 <!--                            <div class="col-md-12 form-group" v-if="category.padre_id != null">-->
 <!--                                <label for="">Texto</label>-->
 <!--                                <jodit-vue v-model="category.text[lang]" :id="'text-'+lang"></jodit-vue>-->
@@ -169,18 +169,19 @@
                     cancelButtonText: 'No'
                 }).then((result) => {
                     if (result.value) {
-                        axios.delete(route('adm.familias.destroy',{id: id})).then((res)=>{
-                            console.log(res)
-                            if (res.data.status == 'success'){
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Se elimino correctamente',
-                                    showConfirmButton: false,
-                                    timer: 2000
-                                })
-                                this.$inertia.visit(route('adm.familias.index'), { method: 'get' })
-                            }
-                        })
+                         this.$inertia.delete(route('adm.familias.destroy',{id: id}))
+                        // axios.delete(route('adm.familias.destroy',{id: id})).then((res)=>{
+                        //     console.log(res)
+                        //     if (res.data.status == 'success'){
+                        //         Swal.fire({
+                        //             icon: 'success',
+                        //             title: 'Se elimino correctamente',
+                        //             showConfirmButton: false,
+                        //             timer: 2000
+                        //         })
+                        //         this.$inertia.visit(route('adm.familias.index'), { method: 'get' })
+                        //     }
+                        // })
                     }
                 })
 

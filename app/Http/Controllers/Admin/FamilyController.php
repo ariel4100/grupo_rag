@@ -89,13 +89,13 @@ class FamilyController extends Controller
 //        dd('aca');
 //        $item->childFamilies()->delete();
         $item->delete();
-//        session()->flash('message', 'Se elimino correctamente.');
-//        dd('entra y elmina');
-//        return redirect('adm/familias/');
-        return response()->json([
-            'status' => 'success',
-            'message' => __('category.store.error-default'),
-        ]);
+       session()->flash('message', 'Se elimino correctamente.');
+    //    dd('entra y elmina');
+    //    return redirect('adm/familias/');
+        // return response()->json([
+        //     'status' => 'success',
+        //     'message' => __('category.store.error-default'),
+        // ]);
         return Redirect::route('adm.familias.index');
 
     }

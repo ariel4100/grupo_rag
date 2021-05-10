@@ -292,6 +292,16 @@ class FrontendController extends Controller
             'familia' => $familia->only('title','id','slug'),
             'gallery' => $galeria,
             'producto' => $producto->only('file','gallery','banner','video','text_video','text','description','title','id','slug'),
+            'producto_related' => $producto->related ? $producto->related->map(function ($item) {
+                return [
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'text' => $item->text,
+                    'order' => $item->order,
+                    'ruta' => route('producto',$item->slug),
+                    'image' => $item->gallery ? Storage::disk(env('DEFAULT_STORAGE_DISK'))->url($item->gallery[0]) : '',
+                ];
+            }) : [],
         ])->withViewData(['title' => $producto->title]);
     }
 

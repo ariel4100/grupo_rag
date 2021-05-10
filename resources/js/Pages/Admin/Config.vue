@@ -259,7 +259,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-12 col-lg-12">
+                    <div v-if="0" class="col-xl-12 col-lg-12">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">Google reCAPTCHA ( Para la comunicación entre tu sitio web y el servicio reCAPTCHA. )</h6>

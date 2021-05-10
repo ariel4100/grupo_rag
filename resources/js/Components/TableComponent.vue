@@ -120,7 +120,7 @@
                 </b-card>
             </template>
         </b-table>
-        <b-row class="justify-content-center">
+        <!-- <b-row class="justify-content-center">
             <b-col md="6" class="my-1">
                 <b-pagination
                         v-model="currentPage"
@@ -131,7 +131,7 @@
                         class="my-0"
                 ></b-pagination>
             </b-col>
-        </b-row>
+        </b-row> -->
 
         <!-- Info modal -->
         <b-modal :id="infoModal.id" :title="infoModal.title" ok-only @hide="resetInfoModal">
@@ -148,8 +148,8 @@
                 isBusy: false,
                 totalRows: 1,
                 currentPage: 1,
-                perPage: 5,
-                pageOptions: [5, 10, 15, { value: 100, text: "Todos" }],
+                perPage: 100,
+                pageOptions: [100, 150, 200, { value: 100, text: "Todos" }],
                 sortBy: '',
                 sortDesc: false,
                 sortDirection: 'asc',

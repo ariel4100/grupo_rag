@@ -23,6 +23,7 @@ class ProductController extends Controller
         $productos = Product::orderBy('order')->get();
         $familias = Family::orderBy('order')->get();
 //        $productos_aguila = Product::on(env('aguila'))->get();
+       $productos_con_detalle = Product::orderBy('order')->get();
 
 //        dd($productos);
         return Inertia::render('Admin/Product', [
@@ -35,7 +36,12 @@ class ProductController extends Controller
                 ];
             }),
             'subfamilias' => [],
-
+            'productos_detalle' => $productos_con_detalle->map(function ($value) {
+                return [
+                    'id' => $value->id,
+                    'title' => $value->title ?? '',
+                ];
+            }),
             'productos' => $productos->map(function ($item) {
                 return [
                     'id' => $item->id,
@@ -45,12 +51,19 @@ class ProductController extends Controller
                     'text_video' => $item->text_video ? $item->getTranslations('text_video') : ['es' => ''],
                     'order' => $item->order,
                     'featured' => $item->featured,
+                    'family_id' => $item->family_id,
                     'video' => $item->video,
                     'gallery' => collect($item->gallery)->map(function ($item) {
                         $url_image =  Storage::disk(env('DEFAULT_STORAGE_DISK'))->url($item);
 //                        dd($item);
                         return $url_image;
                     }),
+                    'productos' => $item->related ? $item->related->map(function ($value) {
+                        return [
+                            'id' => $value->id,
+                            'title' => $value->title,
+                        ];
+                    }) : [],
                 ];
             }),
 
@@ -98,7 +111,11 @@ class ProductController extends Controller
 
 //            $item->slug    = str::slug($request->title);
             $item->save();
-
+            $productos = collect(json_decode($request->productos));
+//            productos relacionados
+            if (count($productos) > 0){
+                $item->related()->sync($productos->pluck('id'));
+            }
             DB::commit();
 
             session()->flash('message', 'Se ha guardado correctamente.');

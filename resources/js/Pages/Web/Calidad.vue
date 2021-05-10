@@ -7,7 +7,7 @@
                 <div class="col-md-6 col-lg-6  d-flex flex-column  px-5 py-5" v-for="(item,index) in textos" :style="index == 0 ? 'background-color: #ECECEC;' : ''">
                     <p class="" v-html="item.text"></p>
                     <div class="text-center mt-auto">
-                        <a :href="item.image" donwload class="btn btn-primario  rounded-pill text-white">
+                        <a v-if="item.image" :href="item.image" donwload class="btn btn-primario  rounded-pill text-white">
                             {{ item.title }}
                             <i class="fas fa-download fa-lg text-primario rounded-circle p-2 bg-white"></i>
                         </a>
