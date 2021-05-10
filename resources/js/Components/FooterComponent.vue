@@ -103,9 +103,9 @@
                                 <li v-if="$page.emails.length > 0" class="list-group-item bg-transparent border-0 d-flex fz-15 px-0 py-1 mb-2 flex-md-row flex-column">
                                     <i class="fas fa-envelope fa-lg  mr-md-3 mt-2"></i>
                                     <div class="">
-                                        <a :href="'mailto:'+item.email" class="hover-link" v-for="item in $page.emails.slice(0,3)">
+                                        <a :href="'mailto:'+item.email" class="hover-link d-block" v-for="item in $page.emails.slice(0,3)">
                                             {{ item.email }}
-                                        </a> <br>
+                                        </a> 
                                     </div>
                                 </li>
                             </ul>

@@ -57,7 +57,7 @@
                         <li class="list-group-item bg-transparent border-0 d-flex px-0  align-items-center" v-if="$page.emails.length > 0">
                             <i class="fas fa-envelope fa-lg text-primario mr-2"></i>
                             <template v-for="item in $page.emails.slice(0,3)">
-                                <a :href="'mailto:'+item.email" target="_blank" class="text-muted hover-color text-truncate">{{ item.email }}</a>
+                                <a :href="'mailto:'+item.email" target="_blank" class="text-muted hover-color text-truncate d-block">{{ item.email }}</a>   
                             </template>
                         </li>
                     </ul>
