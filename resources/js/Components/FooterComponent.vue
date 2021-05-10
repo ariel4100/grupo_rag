@@ -105,7 +105,7 @@
                                     <div class="">
                                         <a :href="'mailto:'+item.email" class="hover-link" v-for="item in $page.emails.slice(0,3)">
                                             {{ item.email }}
-                                        </a>
+                                        </a> <br>
                                     </div>
                                 </li>
                             </ul>
