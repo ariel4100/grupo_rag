@@ -51,7 +51,7 @@
 
     <!-- Scripts -->
     @routes
-    <script src="{{ asset('js/app.js') }}?=2" defer></script>
+    <script src="{{ asset('js/app.js') }}?=3" defer></script>
 </head>
 <body class="font-sans antialiased">
 @inertia
