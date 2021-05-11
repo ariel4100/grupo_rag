@@ -36,7 +36,7 @@ class MailController extends Controller
 //        dd($request->all());
 
 //        $for = ['soporte@osole.es'];
-        $for = ['info@rpacataforesisfactory.com'];
+        $for = ['info@gruporag.com'];
 
         Mail::send('mail.contacto', $data, function($msj) use($subject,$for,$file){
             $msj->from(env('MAIL_FROM_ADDRESS'),env('APP_NAME'));
@@ -60,7 +60,7 @@ class MailController extends Controller
 //        dd($request->all());
 
 //        $for = ['soporte@osole.es'];
-        $for = ['info@rpacataforesisfactory.com'];
+        $for = ['info@gruporag.com'];
         Mail::send('mail.presupuesto', $data, function($msj) use($subject,$for,$file){
             $msj->from(env('MAIL_FROM_ADDRESS'),env('APP_NAME'));
             $msj->replyTo($for);
